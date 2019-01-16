@@ -15,7 +15,6 @@ export default class Login extends Component {
             message:'',
             email_auth:''
         };
-        // this.handleSubmit = this.handleLogOut.bind(this);
     }
 
     validateForm() {
@@ -44,7 +43,8 @@ export default class Login extends Component {
                     console.log(error);
                   });
                   this.setState({
-                    message:'logged out'
+                    message:'logged out',
+                    logged_in: false
                 });
             }
     }
@@ -68,11 +68,13 @@ export default class Login extends Component {
     handleLogIn = () =>{
         if (this.validateForm()){
             this.setState({
-                message: 'Signed in'
+                message: 'Signed in',
+                logged_in: true
             });
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(error=> {
             this.setState({
-                message: 'Sign in failed'
+                message: 'Sign in failed',
+                logged_in: false
             });
             // Handle Errors here.
             console.log(error.code);
@@ -82,25 +84,47 @@ export default class Login extends Component {
         }
     }
 
-    handleSubmit = event => {
-        event.preventDefault();
-        if (this.state.password.length>8){
-            this.setState({
-                message: 'signed in',
-                logged_in:true
-            });
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(error=> {
-            this.setState({
-                message: 'account creation failed',
-                logged_in:false
-            });
-            // Handle Errors here.
-            console.log(error.code);
-            console.log(error.message);
+    
 
-          });
+    updateButtonView (){
+        console.log(this.state.logged_in);
+        if(this.state.logged_in){
+            return(
+                <div>
+                <Button
+                        block
+                        bsSize="large"
+                        disable={!this.validateForm()}
+                        onClick={this.handleLogOut}
+                    >
+                        Logout
+                    </Button>
+                </div>
+            );
+        }else{
+            return(
+                <div>
+                <Button
+                        block
+                        bsSize="large"
+                        onClick={this.handleRegister}
+                    >
+                        Register
+                    </Button>
+                    <Button
+                        block
+                        bsSize="large"
+                        disable={!this.validateForm()}
+                        onClick={this.handleLogIn}
+                    >
+                        Login
+                    </Button>
+                </div>
+            );
         }
     }
+
+
 
     render() {
         return (
@@ -123,29 +147,9 @@ export default class Login extends Component {
                             type="password"
                         />
                     </FormGroup>
-                    <Button
-                        block
-                        bsSize="large"
-                        onClick={this.handleRegister}
-                    >
-                        Register
-                    </Button>
-                    <Button
-                        block
-                        bsSize="large"
-                        disable={!this.validateForm()}
-                        onClick={this.handleLogIn}
-                    >
-                        Login
-                    </Button>
-                    <Button
-                        block
-                        bsSize="large"
-                        disable={!this.validateForm()}
-                        onClick={this.handleLogOut}
-                    >
-                        Logout
-                    </Button>
+                    {this.updateButtonView()}
+                    
+                    
                     
                     <div>{this.state.message}</div>
                 </form>
