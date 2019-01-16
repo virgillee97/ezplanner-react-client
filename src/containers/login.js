@@ -18,7 +18,8 @@ export default class Login extends Component {
     }
 
     validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 8;
+        console.log(/\d/.exec(this.state.password) + "validating regular exp");
+        return this.state.email.length > 0 && this.state.password.length > 8 && (/\d/.exec(this.state.password)===true);
     }
     loginState(){
         console.log(this.state.logged_in);
@@ -48,22 +49,6 @@ export default class Login extends Component {
                 });
             }
     }
-    handleRegister =() =>{
-        if (this.state.password.length>8){
-            this.setState({
-                message: 'account created'
-            });
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(error=> {
-            this.setState({
-                message: 'account creation failed'
-            });
-            // Handle Errors here.
-            console.log(error.code);
-            console.log(error.message);
-
-          });
-        }
-    }
 
     handleLogIn = () =>{
         if (this.validateForm()){
@@ -83,6 +68,25 @@ export default class Login extends Component {
           });
         }
     }
+
+    handleRegister =() =>{
+        if (this.state.password.length>8){
+            this.setState({
+                message: 'account created'
+            });
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(error=> {
+            this.setState({
+                message: 'account creation failed'
+            });
+            // Handle Errors here.
+            console.log(error.code);
+            console.log(error.message);
+
+          });
+        }
+    }
+
+
 
     
 
