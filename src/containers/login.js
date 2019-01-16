@@ -10,12 +10,20 @@ export default class Login extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            logged_in: false,
+            message:'',
+            email_auth:''
         };
+        // this.handleSubmit = this.handleLogOut.bind(this);
     }
 
     validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
+        return this.state.email.length > 0 && this.state.password.length > 8;
+    }
+    loginState(){
+        console.log(this.state.logged_in);
+        return this.state.logged_in;
     }
 
 
@@ -25,22 +33,79 @@ export default class Login extends Component {
         });
     }
 
+    handleLogOut = () =>{
+            if (!this.props.disabled){
+                
+                firebase.auth().signOut().then(function() {
+                    
+                    // Sign-out successful.
+                  }).catch(function(error) {
+                    // An error happened.
+                    console.log(error);
+                  });
+                  this.setState({
+                    message:'logged out'
+                });
+            }
+    }
+    handleRegister =() =>{
+        if (this.state.password.length>8){
+            this.setState({
+                message: 'account created'
+            });
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(error=> {
+            this.setState({
+                message: 'account creation failed'
+            });
+            // Handle Errors here.
+            console.log(error.code);
+            console.log(error.message);
+
+          });
+        }
+    }
+
+    handleLogIn = () =>{
+        if (this.validateForm()){
+            this.setState({
+                message: 'Signed in'
+            });
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(error=> {
+            this.setState({
+                message: 'Sign in failed'
+            });
+            // Handle Errors here.
+            console.log(error.code);
+            console.log(error.message);
+
+          });
+        }
+    }
+
     handleSubmit = event => {
         event.preventDefault();
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+        if (this.state.password.length>8){
+            this.setState({
+                message: 'signed in',
+                logged_in:true
+            });
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(error=> {
+            this.setState({
+                message: 'account creation failed',
+                logged_in:false
+            });
             // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
-            // ...
+            console.log(error.code);
+            console.log(error.message);
+
           });
+        }
     }
 
     render() {
         return (
             <div className="login">
-                <form onSubmit={this.handleSubmit}>
+                <form >
                     <FormGroup controlId="email" bsSize="large">
                         <ControlLabel>Email</ControlLabel>
                         <FormControl
@@ -61,12 +126,30 @@ export default class Login extends Component {
                     <Button
                         block
                         bsSize="large"
+                        onClick={this.handleRegister}
+                    >
+                        Register
+                    </Button>
+                    <Button
+                        block
+                        bsSize="large"
                         disable={!this.validateForm()}
-                        type="submit"
+                        onClick={this.handleLogIn}
                     >
                         Login
                     </Button>
+                    <Button
+                        block
+                        bsSize="large"
+                        disable={!this.validateForm()}
+                        onClick={this.handleLogOut}
+                    >
+                        Logout
+                    </Button>
+                    
+                    <div>{this.state.message}</div>
                 </form>
+                
             </div>
         );
     }
