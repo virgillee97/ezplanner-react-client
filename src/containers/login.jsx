@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import firebase from "../services/firebase";
+import { loginActionCreator } from "../actionCreators";
+import { connect } from "react-redux";
 
-export default class Login extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
 
@@ -16,11 +18,6 @@ export default class Login extends Component {
 
     validateForm() {
         return true;
-    }
-
-    loginState() {
-        console.log(this.state.logged_in);
-        return this.state.logged_in;
     }
 
     handleChange = event => {
@@ -42,20 +39,9 @@ export default class Login extends Component {
         }
     };
 
-    handleLogIn = async () => {
-        let logged_in = true;
-
-        try {
-            await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
-        } catch (error) {
-            logged_in = false;
-            console.log(`ERROR LOGGING IN: ${error.code} - ${error.message}`);
-        }
-
-        this.setState({
-            message: `${!logged_in ? 'not ' : ''} signed in`,
-            logged_in
-        });
+    handleLogIn = () => {
+        const { email, password } = this.state;
+        this.props.login(email, password);
     };
 
     handleRegister = async () => {
@@ -132,8 +118,23 @@ export default class Login extends Component {
                     {this.renderButtons()}
 
                     <div>{this.state.message}</div>
+                    <div>{this.props.isLoggedIn ? `Hello ${this.props.userEmail}!` : null}</div>
                 </form>
             </div>
         );
     }
 }
+
+const mapStateToProps = state => ({
+    userEmail: (state.userInfo && state.userInfo.email) || null,
+    isLoggedIn: !!state.userInfo,
+    loginInProgress: state.isSigningIn
+});
+
+const mapDispatchToProps = dispatch => ({
+    login: (email, password) => {
+        dispatch(loginActionCreator(email, password));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

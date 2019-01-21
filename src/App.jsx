@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Login from './containers/login';
 
 
@@ -7,7 +8,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Login />
+        <main>
+            <Route exact path="/" component={Login} />
+        </main>
       </div>
     );
   }
