@@ -10,8 +10,7 @@ class Login extends Component {
 
         this.state = {
             email: "",
-            password: "",
-            message: ""
+            password: ""
         };
     }
 
@@ -26,7 +25,7 @@ class Login extends Component {
         this.props.login(email, password);
     };
 
-    handleRegister =() => {
+    handleRegister = () => {
         const { email, password } = this.state;
         this.props.register(email, password);
     };
@@ -73,7 +72,8 @@ class Login extends Component {
 
                     {this.renderButtons()}
 
-                    <div>{this.props.message}</div>
+                    <div>{this.props.
+                         }</div>
                     <div>{this.props.isLoggedIn ? `Hello ${this.props.userEmail}!` : null}</div>
                 </form>
             </div>
