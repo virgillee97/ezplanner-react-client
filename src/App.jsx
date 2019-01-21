@@ -11,7 +11,7 @@ import { loginSuccessfulActionCreator } from './actionCreators';
 class App extends Component {
     componentDidMount() {
         firebase.auth().onAuthStateChanged(user => {
-            if (user) {
+            if (user!=null) {
                 this.props.login(user);
             }
         })

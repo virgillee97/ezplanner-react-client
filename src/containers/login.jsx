@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import firebase from "../services/firebase";
-import { loginActionCreator } from "../actionCreators";
+
+import { loginActionCreator, registerActionCreator } from "../actionCreators";
 import { connect } from "react-redux";
 
 class Login extends Component {
@@ -22,17 +22,17 @@ class Login extends Component {
         });
     };
 
-    handleLogOut = async () => {
-        try {
-            await firebase.auth().signOut();
+    handleLogOut =  () => {
+        // try {
+        //     await firebase.auth().signOut();
 
-            this.setState({
-                message: "logged out",
-                logged_in: false
-            });
-        } catch (error) {
-            console.log(`ERROR LOGGING OUT: ${error.code} - ${error.message}`);
-        }
+        //     this.setState({
+        //         message: "logged out",
+        //         logged_in: false
+        //     });
+        // } catch (error) {
+        //     console.log(`ERROR LOGGING OUT: ${error.code} - ${error.message}`);
+        // }
     };
 
     handleLogIn = () => {
@@ -40,35 +40,14 @@ class Login extends Component {
         this.props.login(email, password);
     };
 
-    handleRegister = async () => {
-        let account_created = true;
-
-        try {
-            await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-        } catch (error) {
-            account_created = false;
-            console.log(`ERROR REGISTERING: ${error.code} - ${error.message}`);
-        }
-
-        this.setState({
-            message: `account ${!account_created ? 'not ' : ''}created`,
-            account_created
-        });
+    handleRegister =() => {
+        const { email, password } = this.state;
+        this.props.register(email, password);
     };
 
     renderButtons() {
         if (this.state.logged_in) {
-            return (
-                <div>
-                    <Button
-                        block
-                        bsSize="large"
-                        onClick={this.handleLogOut}
-                    >
-                        Logout
-                    </Button>
-                </div>
-            );
+            
         } else {
             return (
                 <div>
@@ -128,6 +107,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     login: (email, password) => {
         dispatch(loginActionCreator(email, password));
+    },
+    register:(email, password)=>{
+        dispatch(registerActionCreator(email, password));
     }
 });
 

@@ -7,6 +7,10 @@ export const routeActionEnhancer = store => next => action => {
             store.dispatch(push('/dashboard'));
             next(action);
             break;
+        case actions.LOGOUT_SUCCEEDED:
+            store.dispatch(push('/'));
+            next(action);
+            break;
         default:
             next(action);
             break;
