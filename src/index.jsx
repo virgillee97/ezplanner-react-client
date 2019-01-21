@@ -8,14 +8,14 @@ import { routerMiddleware, ConnectedRouter } from 'connected-react-router';
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer, { initialState } from './reducers';
-import { authActionEnhancer } from './actionEnhancers';
+import { routeActionEnhancer } from './actionEnhancers';
 
 const history = createHistory();
 
 const enhancers = [];
 const middleware = [
     routerMiddleware(history),
-    authActionEnhancer,
+    routeActionEnhancer,
     thunk
 ];
 
