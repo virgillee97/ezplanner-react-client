@@ -1,11 +1,5 @@
-import { mirrorKeys } from "../utils";
 import firebase from '../services/firebase'
-
-export const actions = mirrorKeys(
-    'LOGIN_REQUESTED',
-    'LOGIN_SUCCEEDED',
-    'LOGIN_FAILED'
-);
+import actions from '../actions'
 
 export const loginActionCreator = (email, password) => async (dispatch) => {
     dispatch({

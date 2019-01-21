@@ -1,5 +1,5 @@
-import { actions } from '../actionCreators';
 import { push } from 'connected-react-router';
+import actions from '../actions';
 
 export const routeActionEnhancer = store => next => action => {
     switch (action.type) {

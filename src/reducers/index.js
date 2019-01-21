@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { actions } from '../actionCreators';
 import { connectRouter } from 'connected-react-router';
+import actions from '../actions';
 
 export const initialState = {
     isSigningIn: false,
