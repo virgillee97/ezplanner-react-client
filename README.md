@@ -10,5 +10,5 @@ git clone https://github.com/EZPlanner/ezplanner-react-client
 Please insure that npm is installed on your machine.  
 Once the repo has been cloned, within a teminal inside that repo, run the following command to install needed node modules.
 ```
-npm install
+npm i && npm start
 ```
