@@ -11,8 +11,6 @@ class Login extends Component {
         this.state = {
             email: "",
             password: "",
-            logged_in: false,
-            message: ""
         };
     }
 
@@ -40,21 +38,10 @@ class Login extends Component {
         this.props.login(email, password);
     };
 
-    handleRegister = async () => {
-        let account_created = true;
-
-        try {
-            await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-        } catch (error) {
-            account_created = false;
-            console.log(`ERROR REGISTERING: ${error.code} - ${error.message}`);
-        }
-
-        this.setState({
-            message: `account ${!account_created ? 'not ' : ''}created`,
-            account_created
-        });
-    };
+    handleRegister = () => {
+        const { email, password } = this.state;
+        this.props.register(email, password);
+    }
 
     renderButtons() {
         if (this.state.logged_in) {
