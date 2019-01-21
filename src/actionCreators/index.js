@@ -1,5 +1,6 @@
 import { mirrorKeys } from "../utils";
 import firebase from '../services/firebase'
+import { push } from "connected-react-router";
 
 export const actions = mirrorKeys(
     'LOGIN_REQUESTED',
@@ -22,6 +23,8 @@ export const loginActionCreator = (email, password) => async (dispatch) => {
             type: actions.LOGIN_SUCCEEDED,
             payload: userInfo
         });
+
+        dispatch(push('/dashboard'));
     } catch (error) {
         console.log(`ERROR LOGGING IN: ${error.code} - ${error.message}`);
 

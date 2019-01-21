@@ -19,12 +19,12 @@ const isSigningInReducer = (state = false, action) => {
     }
 }
 
-const userReducer = (state, action) => {
+const userReducer = (state = null, action) => {
     switch (action.type) {
         case actions.LOGIN_SUCCEEDED:
             return action.payload;
         default:
-            return null;
+            return state;
     }
 }
 

@@ -3,6 +3,7 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import firebase from "../services/firebase";
 import { loginActionCreator } from "../actionCreators";
 import { connect } from "react-redux";
+import { push } from "connected-react-router";
 
 class Login extends Component {
     constructor(props) {
@@ -14,10 +15,6 @@ class Login extends Component {
             logged_in: false,
             message: ""
         };
-    }
-
-    validateForm() {
-        return true;
     }
 
     handleChange = event => {
@@ -67,7 +64,6 @@ class Login extends Component {
                     <Button
                         block
                         bsSize="large"
-                        disable={!this.validateForm()}
                         onClick={this.handleLogOut}
                     >
                         Logout
@@ -83,7 +79,6 @@ class Login extends Component {
                     <Button
                         block
                         bsSize="large"
-                        disable={!this.validateForm()}
                         onClick={this.handleLogIn}
                     >
                         Login
