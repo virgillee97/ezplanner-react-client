@@ -23,6 +23,7 @@ class Dashboard extends Component {
       >
           Logout
       </Button>
+      <div>{this.props.message}</div>
     </div>
     );
   }
@@ -31,7 +32,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
     state,
-    userEmail: (state.userInfo && state.userInfo.email) || null
+    userEmail: (state.userInfo && state.userInfo.email) || null,
+    message: state.message || null,
 });
 
 const mapDispatchToProps = dispatch => ({

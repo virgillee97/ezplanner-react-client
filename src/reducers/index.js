@@ -6,8 +6,19 @@ export const initialState = {
     isRegistering:false,
     isSigningIn: false,
     isSigningOut:false,
-    userInfo: null
+    userInfo: null,
+    message: null
 };
+const messageReducer = (state = false, action) => {
+    switch (action.type) {
+        case actions.LOGIN_FAILED: 
+        case actions.LOGOUT_FAILED:
+        case actions.REGISTER_FAILED:
+            return action.payload||null;
+        default:
+            return null;
+    }
+}
 
 const isRegisteringReducer = (state = false, action) => {
     switch (action.type) {
@@ -60,5 +71,6 @@ export default (history) => combineReducers({
     isSigningIn: isSigningInReducer,
     isSigningOut: isSigningOutReducer,
     userInfo: userReducer,
-    isRegistering: isRegisteringReducer
+    isRegistering: isRegisteringReducer,
+    message: messageReducer
 });

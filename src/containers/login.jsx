@@ -11,7 +11,6 @@ class Login extends Component {
         this.state = {
             email: "",
             password: "",
-            logged_in: false,
             message: ""
         };
     }
@@ -20,19 +19,6 @@ class Login extends Component {
         this.setState({
             [event.target.id]: event.target.value
         });
-    };
-
-    handleLogOut =  () => {
-        // try {
-        //     await firebase.auth().signOut();
-
-        //     this.setState({
-        //         message: "logged out",
-        //         logged_in: false
-        //     });
-        // } catch (error) {
-        //     console.log(`ERROR LOGGING OUT: ${error.code} - ${error.message}`);
-        // }
     };
 
     handleLogIn = () => {
@@ -46,24 +32,21 @@ class Login extends Component {
     };
 
     renderButtons() {
-        if (this.state.logged_in) {
-            
-        } else {
-            return (
-                <div>
-                    <Button block bsSize="large" onClick={this.handleRegister}>
-                        Register
-                    </Button>
-                    <Button
-                        block
-                        bsSize="large"
-                        onClick={this.handleLogIn}
-                    >
-                        Login
-                    </Button>
-                </div>
-            );
-        }
+        return (
+            <div>
+                <Button block bsSize="large" onClick={this.handleRegister}>
+                    Register
+                </Button>
+                <Button
+                    block
+                    bsSize="large"
+                    onClick={this.handleLogIn}
+                >
+                    Login
+                </Button>
+            </div>
+        );
+        
     }
 
     render() {
@@ -90,7 +73,7 @@ class Login extends Component {
 
                     {this.renderButtons()}
 
-                    <div>{this.state.message}</div>
+                    <div>{this.props.message}</div>
                     <div>{this.props.isLoggedIn ? `Hello ${this.props.userEmail}!` : null}</div>
                 </form>
             </div>
@@ -101,7 +84,8 @@ class Login extends Component {
 const mapStateToProps = state => ({
     userEmail: (state.userInfo && state.userInfo.email) || null,
     isLoggedIn: !!state.userInfo,
-    loginInProgress: state.isSigningIn
+    loginInProgress: state.isSigningIn,
+    message: state.message
 });
 
 const mapDispatchToProps = dispatch => ({

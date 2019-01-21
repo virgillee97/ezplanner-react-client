@@ -18,9 +18,11 @@ export const loginActionCreator = (email, password) => async (dispatch) => {
         });
     } catch (error) {
         console.log(`ERROR LOGGING IN: ${error.code} - ${error.message}`);
-
+        // TODO: Change payload from the mesage we get from firebase to a custom message based on error code
+        // Firebase message gives users more information then is needed
         dispatch({
-            type: actions.LOGIN_FAILED
+            type: actions.LOGIN_FAILED,
+            payload:error.message
         });
     }
 }
