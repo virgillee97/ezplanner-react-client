@@ -1,21 +1,40 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import Login from './containers/login';
 import Dashboard from './containers/dashboard';
+import firebase from './services/firebase';
+import { connect } from 'react-redux';
+import { loginSuccessfulActionCreator } from './actionCreators';
 
 
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <main>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/dashboard" component={Dashboard} />
-        </main>
-      </div>
-    );
-  }
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.props.login(user);
+            }
+        })
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <main>
+                    <Route exact path="/dashboard" component={Dashboard} />
+                    <Route exact path="/" component={Login} />
+                </main>
+            </div>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = state => ({
+    state
+})
+
+const mapDispatchToProps = dispatch => ({
+    login: user => dispatch(loginSuccessfulActionCreator(user))
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

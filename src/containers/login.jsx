@@ -3,7 +3,6 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import firebase from "../services/firebase";
 import { loginActionCreator } from "../actionCreators";
 import { connect } from "react-redux";
-import { push } from "connected-react-router";
 
 class Login extends Component {
     constructor(props) {

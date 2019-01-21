@@ -12,6 +12,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
+    state,
     userEmail: (state.userInfo && state.userInfo.email) || null
 });
 

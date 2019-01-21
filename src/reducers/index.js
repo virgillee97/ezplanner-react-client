@@ -22,7 +22,7 @@ const isSigningInReducer = (state = false, action) => {
 const userReducer = (state = null, action) => {
     switch (action.type) {
         case actions.LOGIN_SUCCEEDED:
-            return action.payload;
+            return action.payload || null;
         default:
             return state;
     }

@@ -17,14 +17,15 @@ export const loginActionCreator = (email, password) => async (dispatch) => {
         await firebase.auth().signInWithEmailAndPassword(email, password);
 
         const userInfo = firebase.auth().currentUser;
-        console.log('USER INFO: ', userInfo);
+        // console.log('USER INFO: ', userInfo);
 
         dispatch({
             type: actions.LOGIN_SUCCEEDED,
             payload: userInfo
         });
-
         dispatch(push('/dashboard'));
+    
+        // dispatch(loginSuccessfulActionCreator(userInfo));
     } catch (error) {
         console.log(`ERROR LOGGING IN: ${error.code} - ${error.message}`);
 
@@ -32,4 +33,12 @@ export const loginActionCreator = (email, password) => async (dispatch) => {
             type: actions.LOGIN_FAILED
         });
     }
+}
+
+export const loginSuccessfulActionCreator = payload => dispatch => {
+    dispatch({
+        type: actions.LOGIN_SUCCEEDED,
+        payload
+    });
+    dispatch(push('/dashboard'));
 }
