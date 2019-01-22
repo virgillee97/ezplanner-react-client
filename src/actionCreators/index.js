@@ -39,7 +39,8 @@ export const registerActionCreator = (email, password) => async (dispatch) =>{
     } catch (error) {
         console.log(`ERROR REGISTERING: ${error.code} - ${error.message}`);
         dispatch({
-            type: actions.REGISTER_FAILED
+            type: actions.REGISTER_FAILED,
+            payload:error.message
         });
     }
 }
@@ -56,7 +57,8 @@ export const logoutActionCreator = () => async (dispatch) =>{
     } catch (error) {
         console.log(`ERROR LOGGING OUT: ${error.code} - ${error.message}`);
         dispatch({
-            type: actions.LOGOUT_FAILED
+            type: actions.LOGOUT_FAILED,
+            payload:error.message
         });
     }
 }

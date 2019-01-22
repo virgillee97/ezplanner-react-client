@@ -1,45 +1,67 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button} from "react-bootstrap";
-import { logoutActionCreator} from "../actionCreators";
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import styles from "./theme";
+import { withStyles } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import AppBar from "./appbar";
 
 class Dashboard extends Component {
-  handleLogOut =  () => {
-    this.props.logout();
-  };
+    constructor(props) {
+        super(props);
+        this.classes = props.classes;
+    }
 
-  render() {
-    return (
-      <div>
-      <div>
-        {`HELLO ${this.props.userEmail}!!!!`}
-      </div>
-      
-      <Button
-          block
-          bsSize="large"
-          onClick={this.handleLogOut}
-      >
-          Logout
-      </Button>
-      <div>{this.props.message}</div>
-    </div>
-    );
-  }
+    render() {
+        return (
+            <div className={this.classes.root}>
+                <CssBaseline />
+                <AppBar />
+
+                <main className={this.classes.content}>
+                    <div className={this.classes.appBarSpacer} />
+                    <Typography variant="h4" gutterBottom component="h2">
+                        {`HELLO ${this.props.userEmail}!!!!`}
+
+                        <div className={this.classes.root}>
+                            <Grid container spacing={24}>
+                                <Grid item xs={12} lg={6}>
+                                    <Paper className={this.classes.paper}>
+                                        Muje sex chai hai
+                                    </Paper>
+                                </Grid>
+                            </Grid>
+                        </div>
+                    </Typography>
+                    <Typography
+                        component="div"
+                        className={this.classes.chartContainer}
+                    >
+                        {/* <SimpleLineChart /> */}
+                    </Typography>
+                    <Typography variant="h4" gutterBottom component="h2">
+                        Courses
+                    </Typography>
+                    <div className={this.classes.tableContainer}>
+                        {/* <SimpleTable /> */}
+                    </div>
+                </main>
+            </div>
+        );
+    }
 }
-
 
 const mapStateToProps = state => ({
     state,
     userEmail: (state.userInfo && state.userInfo.email) || null,
-    message: state.message || null,
+    message: state.message || null
 });
 
-const mapDispatchToProps = dispatch => ({
-  logout: () => {
-      dispatch(logoutActionCreator());
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default withStyles(styles)(
+    connect(
+        mapStateToProps,
+        null
+    )(Dashboard)
+);
