@@ -5,6 +5,9 @@ import Dashboard from './containers/dashboard';
 import firebase from './services/firebase';
 import { connect } from 'react-redux';
 import { loginSuccessfulActionCreator } from './actionCreators';
+import styles from './containers/theme';
+import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+
 
 
 
@@ -19,12 +22,14 @@ class App extends Component {
 
     render() {
         return (
+            <MuiThemeProvider>
             <div className="App">
                 <main>
                     <Route exact path="/dashboard" component={Dashboard} />
                     <Route exact path="/" component={Login} />
                 </main>
             </div>
+            </MuiThemeProvider>
         );
     }
 }
@@ -37,4 +42,4 @@ const mapDispatchToProps = dispatch => ({
     login: user => dispatch(loginSuccessfulActionCreator(user))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(App)));
