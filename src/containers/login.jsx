@@ -12,6 +12,17 @@ import { withStyles } from "@material-ui/core/styles";
 import { loginActionCreator, registerActionCreator } from "../actionCreators";
 import { connect } from "react-redux";
 import styles from "./theme";
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import Snackbar from '@material-ui/core/Snackbar';
+
+import classNames from "classnames";
+import ErrorIcon from '@material-ui/icons/Error';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-133316416-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
+
 
 class Login extends Component {
     constructor(props) {
@@ -19,9 +30,23 @@ class Login extends Component {
         this.classes = props.classes;
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            open: (this.props.message!=null)
         };
     }
+    componentDidMount(){
+        if(this.props.message){
+            this.setState({
+                open:true
+            });
+        }
+    }
+    
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
+
 
     handleChange = event => {
         this.setState({
@@ -30,19 +55,62 @@ class Login extends Component {
     };
 
     handleLogIn = () => {
+        this.setState({
+            open:true
+        });
         const { email, password } = this.state;
         this.props.login(email, password);
     };
 
     handleRegister = () => {
+        this.setState({
+                open:true
+            });
         const { email, password } = this.state;
         this.props.register(email, password);
     };
 
+    renderSnackBar(){
+        return(
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                open={this.state.open}
+                autoHideDuration={3000}
+                onClose={this.handleClose}
+            >
+
+        <SnackbarContent
+            className={classNames(this.classes.error, this.className)}
+            aria-describedby="client-snackbar"
+            message={
+            <span id="client-snackbar" className={this.classes.message}>
+                <ErrorIcon className={classNames(this.classes.error, this.classes.iconVariant)} />
+                {this.props.message}
+            </span>
+            }
+            action={[
+            <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={this.classes.close}
+                onClick={this.handleClose}
+            >
+                <CloseIcon className={this.classes.icon} />
+            </IconButton>
+            ]}
+        />
+        </Snackbar>
+        );
+    }
+
     render() {
         return (
             <div className="login">
-                <form>
+                
                     <main className={this.classes.main}>
                         <CssBaseline />
                         <Paper className={this.classes.paper}>
@@ -97,25 +165,16 @@ class Login extends Component {
                                     Register
                                 </Button>
                             </form>
-                            <div>{this.props.message}</div>
+                            
                         </Paper>
                     </main>
-
-                    <div>
-                        {this.props.isLoggedIn
-                            ? `Hello ${this.props.userEmail}!`
-                            : null}
-                    </div>
-                </form>
+                {this.renderSnackBar()}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    userEmail: (state.userInfo && state.userInfo.email) || null,
-    isLoggedIn: !!state.userInfo,
-    loginInProgress: state.isSigningIn,
     message: state.message
 });
 

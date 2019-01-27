@@ -1,3 +1,6 @@
+import green from '@material-ui/core/colors/green';
+import amber from '@material-ui/core/colors/amber';
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -24,6 +27,25 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+  },
+  searchPaper: {
+    height:'50%',
+    marginTop: theme.spacing.unit * 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+  },
+  chipPaper: {
+    marginTop: theme.spacing.unit * 8,
+    display: 'flex',
+    flexDirection: 'horizontal',
+    alignItems: 'left',
+    flexWrap: 'wrap',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+  },
+  chip:{
+    margin:'10px 5px 0px 5px'
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -111,6 +133,91 @@ const styles = theme => ({
   h5: {
     marginBottom: theme.spacing.unit * 2,
   },
+  error: {
+    backgroundColor: theme.palette.error.dark,
+  },
+  icon: {
+    fontSize: 20,
+  },
+  iconVariant: {
+    opacity: 0.9,
+    marginRight: theme.spacing.unit,
+  },
+  message: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  table: {
+    fontFamily: theme.typography.fontFamily,
+  },
+  flexContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+  },
+  tableRow: {
+    cursor: 'pointer',
+  },
+  tableRowHover: {
+    '&:hover': {
+      backgroundColor: theme.palette.grey[200],
+    },
+  },
+  tableCell: {
+    flex: 1,
+  },
+  noClick: {
+    cursor: 'initial',
+  },
+});
+
+export const snackBarStyles = theme => ({
+  success: {
+    backgroundColor: green[600],
+  },
+  error: {
+    backgroundColor: theme.palette.error.dark,
+  },
+  info: {
+    backgroundColor: theme.palette.primary.dark,
+  },
+  warning: {
+    backgroundColor: amber[700],
+  },
+  
+});
+
+export const searchStyle = theme =>({
+  root: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    width: 400,
+  },
+  input: {
+    marginLeft: 8,
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+  divider: {
+    width: 1,
+    height: 28,
+    margin: 4,
+  },
+});
+
+export const chipStyles = theme => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    padding: theme.spacing.unit / 2,
+  },
+  
+  
+  
 });
 
 export default styles;

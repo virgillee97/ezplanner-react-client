@@ -26,6 +26,33 @@ export const loginActionCreator = (email, password) => async (dispatch) => {
     }
 }
 
+export const awsPlannerLamdaActionCreator = (courses) => async (dispatch) => {
+    dispatch({
+        type: actions.PLANNER_REQUESTED
+    });
+
+    try {
+        //TODO: Invoke lamda
+        
+        let fillerCourses=[
+            ['ECE254', 'Operating Systems and Systems Programming', 'https://uwflow.com/course/ece254'],
+            ['ECE290', 'Engineering Profession, Ethics, and Law', 'https://uwflow.com/course/ece290'],
+            ['ECE316', 'Probability Theory and Statistics', 'https://uwflow.com/course/ece316'],
+            ['ECE309', 'Introduction to Thermodynamics and Heat Transfer', 'https://uwflow.com/course/ece309'],
+        ];
+        dispatch({
+            type: actions.PLANNER_SUCCEEDED,
+            payload: fillerCourses
+        });
+    } catch (error) {
+        console.log(`ERROR IN INVOKING AWS LAMDA: ${error.code} - ${error.message}`);
+        dispatch({
+            type: actions.PLANNER_FAILED,
+            payload:error.message
+        });
+    }
+}
+
 export const registerActionCreator = (email, password) => async (dispatch) =>{
     dispatch({
         type:actions.REGISTER_REQUESTED
@@ -67,3 +94,18 @@ export const loginSuccessfulActionCreator = payload => ({
     type: actions.LOGIN_SUCCEEDED,
     payload
 })
+
+export const updateCoursesActionCreator = (courses, course) => (dispatch) => {
+    if(course!=null){
+        let courseToAdd={
+            key: courses.length||0,
+            label: course
+        }
+        courses = [...courses, courseToAdd];
+    }
+    dispatch({
+        type: actions.UPDATE_COURSE_INPUTS,
+        payload: courses
+    });
+
+}
