@@ -36,8 +36,48 @@ const styles = theme => ({
     alignItems: 'center',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
   },
+  // searchRoot: {
+  //   padding: '2px 4px',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   width: 400,
+  // },
+  // searchInput: {
+  //   marginLeft: 8,
+  //   flex: 1,
+  // },
+  // searchIconButton: {
+  //   padding: 10,
+  // },
+  // searchDivider: {
+  //   width: 1,
+  //   height: 28,
+  //   margin: 4,
+  // },
+  searchRoot: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    width: 400,
+  },
+  searchInput: {
+    marginLeft: 8,
+    flex: 1,
+  },
+  searchIconButton: {
+    padding: 10,
+  },
+  searchDivider: {
+    width: 1,
+    height: 28,
+    margin: 4,
+  },
+
+
+
   chipPaper: {
-    marginTop: theme.spacing.unit * 8,
+    // marginTop: theme.spacing.unit * 8,'
+    height:'100%',
     display: 'flex',
     flexDirection: 'horizontal',
     alignItems: 'left',
@@ -192,7 +232,7 @@ export const searchStyle = theme =>({
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: 400,
+    
   },
   input: {
     marginLeft: 8,
@@ -206,6 +246,7 @@ export const searchStyle = theme =>({
     height: 28,
     margin: 4,
   },
+  
 });
 
 export const chipStyles = theme => ({

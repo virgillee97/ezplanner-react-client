@@ -6,7 +6,12 @@ import firebase from './services/firebase';
 import { connect } from 'react-redux';
 import { loginSuccessfulActionCreator } from './actionCreators';
 import styles from './containers/theme';
-import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+const theme = createMuiTheme({
+    typography: {
+        useNextVariants: true,
+      },
+});
 
 
 
@@ -22,7 +27,7 @@ class App extends Component {
 
     render() {
         return (
-            <MuiThemeProvider>
+            <MuiThemeProvider theme={theme}>
             <div className="App">
                 <main>
                     <Route exact path="/dashboard" component={Dashboard} />

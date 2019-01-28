@@ -45,7 +45,7 @@ class Search extends React.Component{
   render(){
     console.log(this.props.courses)
     return (
-      <div className={this.classes.root}>
+      <Paper className={this.classes.root} elevation={1}>
         <InputBase 
           className={this.classes.input} 
           value={this.state.course||""}
@@ -53,11 +53,12 @@ class Search extends React.Component{
           onChange={this.handleChange} 
           id ="course"
           onKeyPress={this.handleKeyPress} />
-        <Divider className={this.classes.divider} />
+        
         <IconButton color="primary" className={this.classes.iconButton} aria-label="Enter" onClick={this.handleSubmit}>
           <Enter />
         </IconButton>
-        </div>
+        <Divider className={this.classes.searchDivider} />
+        </Paper>
       
     );
   }
