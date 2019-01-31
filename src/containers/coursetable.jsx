@@ -44,6 +44,8 @@ class CourseTable extends Component{
   
   updateTable(){
     if(this.props.data!=null){
+      // TODO: Make this more efficient
+      this.rows = [];
       for (let i = 0; i < (this.props.data.length); i += 1) {
         this.rows.push({
           id:i,
