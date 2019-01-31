@@ -43,7 +43,6 @@ class Search extends React.Component{
   }
 
   render(){
-    console.log(this.props.courses)
     return (
       <Paper className={this.classes.root} elevation={1}>
         <InputBase 
