@@ -18,21 +18,38 @@ class MuiVirtualizedTable extends React.PureComponent {
       });
     };
   
-    cellRenderer = ({ cellData, columnIndex = null }) => {
+    cellRenderer = ({ cellData, dataKey, columnIndex = null }) => {
       const { columns, classes, rowHeight, onRowClick } = this.props;
-      return (
-        <TableCell
-          component="div"
-          className={classNames(classes.tableCell, classes.flexContainer, {
-            [classes.noClick]: onRowClick == null,
-          })}
-          variant="body"
-          style={{ height: rowHeight }}
-          align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
-        >
-          {cellData}
-        </TableCell>
-      );
+      if(dataKey == 'link'){
+        return (
+          <TableCell
+            component="div"
+            className={classNames(classes.tableCell, classes.flexContainer, {
+              [classes.noClick]: onRowClick == null,
+            })}
+            variant="body"
+            style={{ height: rowHeight }}
+            align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
+          >
+            <a href={cellData} target="_blank">{cellData}</a>
+          </TableCell>
+        );
+      }else{
+        return (
+          <TableCell
+            component="div"
+            className={classNames(classes.tableCell, classes.flexContainer, {
+              [classes.noClick]: onRowClick == null,
+            })}
+            variant="body"
+            style={{ height: rowHeight }}
+            align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
+          >
+            {cellData}
+          </TableCell>
+        );
+      }
+      
     };
   
     headerRenderer = ({ label, columnIndex, dataKey, sortBy, sortDirection }) => {
@@ -79,10 +96,11 @@ class MuiVirtualizedTable extends React.PureComponent {
               {columns.map(({ cellContentRenderer = null, className, dataKey, ...other }, index) => {
                 let renderer;
                 if (cellContentRenderer != null) {
-                  renderer = cellRendererProps =>
+                  renderer = (cellRendererProps, dataKey) =>
                     this.cellRenderer({
                       cellData: cellContentRenderer(cellRendererProps),
                       columnIndex: index,
+                      dataKey
                     });
                 } else {
                   renderer = this.cellRenderer;
