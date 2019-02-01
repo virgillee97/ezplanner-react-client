@@ -44,7 +44,7 @@ class Dashboard extends Component {
                         <div className={this.classes.root}>
                             <Grid container spacing={24}>
                                 
-                                <Grid item xs={12} lg={3}>
+                                {/* <Grid item xs={12} lg={3}>
                                     <Paper className={this.classes.searchPaper}>
                                     <Button
                                     fullWidth
@@ -55,7 +55,7 @@ class Dashboard extends Component {
                                         Generate
                                     </Button>
                                     </Paper>
-                                </Grid>
+                                </Grid> */}
                                 <Grid item xs={12} lg={12}/>
                                 <Grid item xs={12} lg={1}/>
                                 <Grid item xs={12} lg={4}>
