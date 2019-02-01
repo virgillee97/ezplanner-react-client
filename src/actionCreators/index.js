@@ -31,19 +31,44 @@ export const awsPlannerLamdaActionCreator = (courses) => async (dispatch) => {
         type: actions.PLANNER_REQUESTED
     });
 
+    let api_call = 'https://ezplanner-flask-api.herokuapp.com/api/planner?';
+    for(let i =0; i<courses.length; i++){
+        api_call+='&course=';
+        api_call+=String(courses[i]['label']);
+    }
+    
+
     try {
-        //TODO: Invoke lamda
+        let response = await fetch(api_call,
+                {
+                method: 'GET',
+                });
+
+        console.log(response)
+        response = await response.json();
+        if(await response['data']!=null){
+            let payloadResponse = [];
+            // ['ECE254', 'Operating Systems and Systems Programming', 'https://uwflow.com/course/ece254'],
+            for (let i =0; i< response['data'].length; i++){
+                // payloadResponse.push({
+                //     key:i,
+                //     label:response['data'][i]
+                // })
+                payloadResponse.push([response['data'][i], 'Title', 'https://uwflow.com/course/'+response['data'][i].toString().toLowerCase()])
+            }
+            console.log(payloadResponse)
+            dispatch({
+                type: actions.PLANNER_SUCCEEDED,
+                payload:payloadResponse
+            });
+        }else{
+            console.log('Empty body')
+            dispatch({
+                type: actions.PLANNER_SUCCEEDED,
+                payload: []
+            });
+        }
         
-        let fillerCourses=[
-            ['ECE254', 'Operating Systems and Systems Programming', 'https://uwflow.com/course/ece254'],
-            ['ECE290', 'Engineering Profession, Ethics, and Law', 'https://uwflow.com/course/ece290'],
-            ['ECE316', 'Probability Theory and Statistics', 'https://uwflow.com/course/ece316'],
-            ['ECE309', 'Introduction to Thermodynamics and Heat Transfer', 'https://uwflow.com/course/ece309'],
-        ];
-        dispatch({
-            type: actions.PLANNER_SUCCEEDED,
-            payload: fillerCourses
-        });
     } catch (error) {
         console.log(`ERROR IN INVOKING AWS LAMDA: ${error.code} - ${error.message}`);
         dispatch({

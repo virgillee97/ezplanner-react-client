@@ -23,17 +23,9 @@ class Dashboard extends Component {
         super(props);
         this.classes = props.classes;
     }
-    componentWillMount(){
-        console.log(1)
-        if(this.props.userEmail==null){
-                console.log(2)
-                return <Redirect to="/" push />
-              
-        }
-    }
     
     generatePlannerCourses=()=>{
-        this.props.planner(['lorem ipsum'],['lorem ipsum2'],['lorem ipsum3']);
+        this.props.planner(this.props.courseInput);
         this.forceUpdate();
     }
 
@@ -52,7 +44,7 @@ class Dashboard extends Component {
                         <div className={this.classes.root}>
                             <Grid container spacing={24}>
                                 
-                                {/* <Grid item xs={12} lg={3}>
+                                <Grid item xs={12} lg={3}>
                                     <Paper className={this.classes.searchPaper}>
                                     <Button
                                     fullWidth
@@ -60,10 +52,10 @@ class Dashboard extends Component {
                                     color="primary"
                                     onClick={this.generatePlannerCourses}
                                     >
-                                        Generate Dummy Data
+                                        Generate
                                     </Button>
                                     </Paper>
-                                </Grid> */}
+                                </Grid>
                                 <Grid item xs={12} lg={12}/>
                                 <Grid item xs={12} lg={1}/>
                                 <Grid item xs={12} lg={4}>
@@ -99,7 +91,8 @@ class Dashboard extends Component {
 const mapStateToProps = state => ({
     state,
     userEmail: (state.userInfo && state.userInfo.email) || null,
-    message: state.message || null
+    message: state.message || null,
+    courseInput:state.coursesInput||null,
 });
 const mapDispatchToProps = dispatch =>({
     planner: (courses) => {
