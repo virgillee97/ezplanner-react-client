@@ -9,6 +9,7 @@ import {searchStyle} from './theme';
 import { connect } from "react-redux";
 import { updateCoursesActionCreator} from "../actionCreators";
 import { Paper } from '@material-ui/core';
+import { awsPlannerLamdaActionCreator } from "../actionCreators";
 // https://material-ui.com/demos/autocomplete/ 
 
 
@@ -26,11 +27,16 @@ class Search extends React.Component{
       [event.target.id]: event.target.value
     });
   }
-  handleKeyPress = (e) => {
+  handleKeyPress = async (e) => {
     if (e.key === 'Enter') {
-      this.handleSubmit()
+      await this.handleSubmit()
+      this.generatePlannerCourses()
     }
   }
+  generatePlannerCourses=()=>{
+    this.props.planner(this.props.courses);
+    this.forceUpdate();
+}
 
 
   handleSubmit=()=>{
@@ -75,6 +81,9 @@ const mapDispatchToProps = dispatch =>({
   updateCourses: (courses, course) => {
       dispatch(updateCoursesActionCreator(courses, course));
   },
+  planner: (courses) => {
+    dispatch(awsPlannerLamdaActionCreator(courses));
+},
 });
 
 export default withStyles(searchStyle)(
@@ -83,3 +92,4 @@ export default withStyles(searchStyle)(
       mapDispatchToProps
   )(Search)
 );
+
