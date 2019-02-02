@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Route, withRouter } from 'react-router-dom';
 import Login from './containers/login';
 import Dashboard from './containers/dashboard';
@@ -11,6 +12,7 @@ import {
   MuiThemeProvider,
   createMuiTheme
 } from '@material-ui/core/styles';
+
 const theme = createMuiTheme({
   typography: {
     useNextVariants: true
@@ -39,6 +41,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  login: PropTypes.func
+};
 
 const mapStateToProps = state => ({
   state
