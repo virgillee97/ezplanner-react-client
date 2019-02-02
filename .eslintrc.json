@@ -3,6 +3,11 @@
     "browser": true,
     "es6": true
   },
+  "ecmaFeatures": {
+    "modules": true,
+    "arrowFunctions": true,
+    "classes": true
+  },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parserOptions": {
     "ecmaFeatures": {
@@ -11,6 +16,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
+  "parser": "babel-eslint",
   "plugins": ["react"],
   "rules": {
     "indent": ["error", 2],
