@@ -44,18 +44,18 @@ class Appbar extends Component {
               noWrap
               className={this.classes.title}
             >
-              EZPlanner{' '}
-            </Typography>{' '}
+              EZPlanner
+            </Typography>
             <Typography component="h1" variant="h6" color="inherit" noWrap>
-              Logout{' '}
-            </Typography>{' '}
+              Logout
+            </Typography>
             <IconButton color="inherit" onClick={this.handleLogOut}>
               <Badge badgeContent={0} color="secondary">
                 <ExitToApp />
-              </Badge>{' '}
-            </IconButton>{' '}
-          </Toolbar>{' '}
-        </AppBar>{' '}
+              </Badge>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
       </div>
     );
   }
