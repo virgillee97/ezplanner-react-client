@@ -50,11 +50,8 @@ export const awsPlannerLamdaActionCreator = (courses) => async (dispatch) => {
             let payloadResponse = [];
             // ['ECE254', 'Operating Systems and Systems Programming', 'https://uwflow.com/course/ece254'],
             for (let i =0; i< response['data'].length; i++){
-                // payloadResponse.push({
-                //     key:i,
-                //     label:response['data'][i]
-                // })
-                payloadResponse.push([response['data'][i], 'Title', 'https://uwflow.com/course/'+response['data'][i].toString().toLowerCase()])
+                // response['data'][i] returns a tuple
+                payloadResponse.push([response['data'][i][0], response['data'][i][1], 'https://uwflow.com/course/'+response['data'][i].toString().toLowerCase()])
             }
             console.log(payloadResponse)
             dispatch({
