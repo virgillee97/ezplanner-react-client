@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import MuiVirtualizedTable from './MuiVirtualizedTable';
-const WrappedVirtualizedTable = MuiVirtualizedTable;
 
 MuiVirtualizedTable.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -52,7 +51,7 @@ class CourseTable extends Component {
       <div>
         {this.updateTable()}
         <Paper style={{ height: '76vh', width: '100%' }}>
-          <WrappedVirtualizedTable
+          <MuiVirtualizedTable
             rowCount={this.rows.length}
             rowGetter={({ index }) => this.rows[index]}
             onRowClick={event => console.log(event)}
