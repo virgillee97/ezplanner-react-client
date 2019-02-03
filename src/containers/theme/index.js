@@ -73,9 +73,7 @@ const styles = theme => ({
   root: {
     display: 'flex'
   },
-  toolbar: {
-    paddingRight: 24 // keep right padding when drawer closed
-  },
+
   toolbarIcon: {
     display: 'flex',
     alignItems: 'center',
@@ -83,22 +81,7 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar
   },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    maxHeight: '60px'
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
+
   menuButton: {
     marginLeft: 12,
     marginRight: 36
@@ -106,10 +89,7 @@ const styles = theme => ({
   menuButtonHidden: {
     display: 'none'
   },
-  title: {
-    padding: theme.spacing.unit * 3,
-    flexGrow: 1
-  },
+
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
@@ -238,6 +218,32 @@ export const chipStyles = theme => ({
   },
   chip: {
     margin: '10px 5px 0px 5px'
+  }
+});
+
+export const appbarStyles = theme => ({
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    maxHeight: '60px'
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen
+    })
+  },
+  toolbar: {
+    paddingRight: 24 // keep right padding when drawer closed
+  },
+  title: {
+    padding: theme.spacing.unit * 3,
+    flexGrow: 1
   }
 });
 

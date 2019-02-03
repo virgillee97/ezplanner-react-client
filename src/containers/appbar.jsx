@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styles from './theme';
+import { appbarStyles } from './theme';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import ExitToApp from '@material-ui/icons/ExitToApp';
@@ -72,7 +72,7 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default withStyles(styles)(
+export default withStyles(appbarStyles)(
   connect(
     null,
     mapDispatchToProps
