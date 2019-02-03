@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import MuiVirtualizedTable from './MuiVirtualizedTable';
 
 MuiVirtualizedTable.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       cellContentRenderer: PropTypes.func,
