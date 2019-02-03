@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import classNames from 'classnames';
 import { logoutActionCreator } from '../actionCreators';
-
+import Disclaimer from './disclaimer';
 // TODO(atul): Change the following component's name so that it doesn't conflict with library
 class Appbar extends Component {
   constructor(props) {
@@ -45,6 +45,7 @@ class Appbar extends Component {
             >
               EZPlanner
             </Typography>
+            <Disclaimer />
             <Typography component="h1" variant="h6" color="inherit" noWrap>
               Logout
             </Typography>

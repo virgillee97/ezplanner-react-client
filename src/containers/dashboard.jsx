@@ -45,7 +45,7 @@ class Dashboard extends Component {
                 <Grid container justify="center">
                   <div className={this.classes.introPaper}>
                     To start planning your future courses start typing courses
-                    you've taken already or upload your unnoficial transcript!
+                    you've taken already or upload your unofficial transcript!
                   </div>
                 </Grid>
                 <Grid item xs={12} lg={1} />
