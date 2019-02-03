@@ -41,12 +41,14 @@ class Dashboard extends Component {
               <Grid container spacing={24}>
                 <Grid item xs={12} lg={12} />
                 <Grid item xs={12} lg={1} />
-                <Grid item xs={12} lg={4}>
+                <Grid item xs={12} lg={5}>
                   <Search />
                 </Grid>
-
-                <Grid item xs={12} lg={6}>
-                  <Grid item xs={12} lg={1} />
+                <Grid item xs={12} lg={5}>
+                  <Search />
+                </Grid>
+                <Grid item xs={12} lg={1} />
+                <Grid item xs={12} lg={12}>
                   {(this.props.courseInput || []).length ? (
                     <CourseChips />
                   ) : null}
