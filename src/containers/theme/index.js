@@ -22,19 +22,6 @@ const styles = theme => ({
     display: 'none'
   },
 
-  searchRoot: {
-    padding: '2px 4px',
-    display: 'flex',
-    alignItems: 'center',
-    width: 400
-  },
-  searchInput: {
-    marginLeft: 8,
-    flex: 1
-  },
-  searchIconButton: {
-    padding: 10
-  },
   searchDivider: {
     width: 1,
     height: 28,
@@ -45,42 +32,6 @@ const styles = theme => ({
     display: 'flex'
   },
 
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar
-  },
-
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 36
-  },
-  menuButtonHidden: {
-    display: 'none'
-  },
-
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    width: theme.spacing.unit * 7,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9
-    }
-  },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -96,13 +47,6 @@ const styles = theme => ({
   },
   h5: {
     marginBottom: theme.spacing.unit * 2
-  },
-
-  fab: {
-    margin: theme.spacing.unit
-  },
-  extendedIcon: {
-    marginRight: theme.spacing.unit
   }
 });
 
