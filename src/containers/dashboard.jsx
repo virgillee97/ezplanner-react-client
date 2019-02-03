@@ -47,7 +47,9 @@ class Dashboard extends Component {
 
                 <Grid item xs={12} lg={6}>
                   <Grid item xs={12} lg={1} />
-                  <CourseChips />
+                  {(this.props.courseInput || []).length ? (
+                    <CourseChips />
+                  ) : null}
                 </Grid>
               </Grid>
             </div>
