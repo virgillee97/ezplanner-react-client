@@ -14,7 +14,7 @@ class CourseChips extends Component {
       <Paper className={classes.chipPaper}>
         {this.props.chipData.map((course, key) => {
           let icon = null;
-          //   console.log("Chips"+data)
+
           // if (data.label === 'React') {
           //   icon = <TagFacesIcon />;
           // }
