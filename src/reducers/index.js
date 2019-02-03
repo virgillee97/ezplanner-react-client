@@ -95,8 +95,6 @@ const coursesInputReducer = (state = null, action) => {
   case actions.REMOVE_COURSE:
     return (state || []).filter(course => course !== action.payload);
   case actions.FILE_UPLOAD_SUCCEEDED:
-    console.log([...new Set(...(state || []), action.payload)]);
-    console.log(action.payload);
     return [...new Set(...(state || []), action.payload)];
   case actions.FILE_UPLOAD_FAILED:
   default:

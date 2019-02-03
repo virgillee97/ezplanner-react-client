@@ -19,6 +19,10 @@ export const routeActionEnhancer = store => next => action => {
     next(action);
     store.dispatch(plannerActionCreator(store.getState().coursesInput));
     break;
+  case actions.FILE_UPLOAD_SUCCEEDED:
+    next(action);
+    store.dispatch(plannerActionCreator(store.getState().coursesInput));
+    break;
   default:
     next(action);
     break;

@@ -7,8 +7,6 @@ export const fileUploadActionCreator = (file, uuid) => async dispatch => {
   });
   try {
     const response = await uploadFile(file, uuid);
-    console.log(response.data);
-    // console.log(response['data']['data']);
     dispatch({
       type: actions.FILE_UPLOAD_SUCCEEDED,
       payload: await response.data
@@ -17,6 +15,6 @@ export const fileUploadActionCreator = (file, uuid) => async dispatch => {
     dispatch({
       type: actions.FILE_UPLOAD_FAILED
     });
-    // console.log(error);
+    console.log('ERROR IN FILE UPLOAD' + error);
   }
 };
