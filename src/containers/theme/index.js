@@ -40,33 +40,6 @@ const styles = theme => ({
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
       .spacing.unit * 3}px`
   },
-  searchPaper: {
-    height: '50%',
-    marginTop: theme.spacing.unit * 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`
-  },
-  // searchRoot: {
-  //   padding: '2px 4px',
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   width: 400,
-  // },
-  // searchInput: {
-  //   marginLeft: 8,
-  //   flex: 1,
-  // },
-  // searchIconButton: {
-  //   padding: 10,
-  // },
-  // searchDivider: {
-  //   width: 1,
-  //   height: 28,
-  //   margin: 4,
-  // },
   searchRoot: {
     padding: '2px 4px',
     display: 'flex',
@@ -245,11 +218,12 @@ export const snackBarStyles = theme => ({
   }
 });
 
-export const searchStyle = theme => ({
+export const searchStyle = () => ({
   root: {
     padding: '2px 4px',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: '100%'
   },
   input: {
     marginLeft: 8,

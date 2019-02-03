@@ -10,6 +10,7 @@ import { addCourseActionCreator } from '../actionCreators';
 import { fileUploadActionCreator } from '../actionCreators';
 import { Paper } from '@material-ui/core';
 import Upload from '@material-ui/icons/CloudUpload';
+import Spinner from './FileUploadSpinner';
 
 // https://material-ui.com/demos/autocomplete/
 
@@ -58,6 +59,7 @@ class FileUpload extends React.Component {
         </IconButton>
 
         <Divider className={this.classes.searchDivider} />
+        {this.props.uploading ? <Spinner /> : null}
       </Paper>
     );
   }
@@ -69,7 +71,8 @@ FileUpload.propTypes = {
   courses: PropTypes.array,
   addCourse: PropTypes.func.isRequired,
   uploadFile: PropTypes.func.isRequired,
-  uuid: PropTypes.string.isRequired
+  uuid: PropTypes.string.isRequired,
+  uploading: PropTypes.bool.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -81,7 +84,8 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 const mapStateToProps = state => ({
-  uuid: (state.userInfo && state.userInfo.uid) || null
+  uuid: (state.userInfo && state.userInfo.uid) || null,
+  uploading: state.isUploading
 });
 
 export default withStyles(searchStyle)(
