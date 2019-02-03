@@ -8,13 +8,6 @@ import { removeCourseActionCreator } from '../actionCreators';
 import chipStyles from './theme';
 
 class CourseChips extends Component {
-  // handleDelete = data => () => {
-  //   const courses = [...this.props.chipData];
-  //   const chipToDelete = courses.indexOf(data);
-  //   courses.splice(chipToDelete, 1);
-  //   this.props.updateCourses(courses, null);
-  // };
-
   render() {
     const { classes } = this.props;
     return (
