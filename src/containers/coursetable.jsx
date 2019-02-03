@@ -96,9 +96,7 @@ const mapStateToProps = state => ({
   data: state.plannerCourses || null
 });
 
-export default withStyles(styles)(
-  connect(
-    mapStateToProps,
-    null
-  )(CourseTable)
-);
+export default connect(
+  mapStateToProps,
+  null
+)(CourseTable);
