@@ -8,6 +8,7 @@ import Enter from '@material-ui/icons/KeyboardArrowRight';
 import { searchStyle } from './theme';
 import { connect } from 'react-redux';
 import { addCourseActionCreator } from '../actionCreators';
+import { fileUploadActionCreator } from '../actionCreators';
 import { Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
@@ -26,6 +27,7 @@ class FileUpload extends React.Component {
     if (event.target.files.length > 0) {
       // Accessed .name from file
       this.setState({ fileName: event.target.files[0].name });
+      this.props.uploadFile(event.target.files[0], this.props.uuid);
     }
   };
 
@@ -66,18 +68,26 @@ FileUpload.propTypes = {
   classes: PropTypes.object.isRequired,
   planner: PropTypes.func,
   courses: PropTypes.array,
-  addCourse: PropTypes.func.isRequired
+  addCourse: PropTypes.func.isRequired,
+  uploadFile: PropTypes.func.isRequired,
+  uuid: PropTypes.string.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
   addCourse: course => {
     dispatch(addCourseActionCreator(course));
+  },
+  uploadFile: (file, uuid) => {
+    dispatch(fileUploadActionCreator(file, uuid));
   }
+});
+const mapStateToProps = state => ({
+  uuid: (state.userInfo && state.userInfo.uid) || null
 });
 
 export default withStyles(searchStyle)(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(FileUpload)
 );
