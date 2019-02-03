@@ -18,21 +18,25 @@ class FileUpload extends React.Component {
     super(props);
     this.classes = props.classes;
     this.state = {
-      course: null
+      fileName: null
     };
   }
 
-  handleSubmit = () => {};
+  handleUpload = event => {
+    if (event.target.files.length > 0) {
+      // Accessed .name from file
+      this.setState({ fileName: event.target.files[0].name });
+    }
+  };
 
   render() {
     return (
       <Paper className={this.classes.root} elevation={1}>
         <InputBase
           className={this.classes.input}
-          value={this.state.course || ''}
+          value={this.state.fileName || ''}
           placeholder="Upload your transcript!"
-          onChange={this.handleChange}
-          id="course"
+          id="file"
           disabled
         />
 
@@ -44,7 +48,12 @@ class FileUpload extends React.Component {
           component="label"
         >
           <Enter />
-          <input type="file" style={{ display: 'none' }} />
+          <input
+            type="file"
+            style={{ display: 'none' }}
+            onChange={event => this.handleUpload(event)}
+            name="selectedFile"
+          />
         </IconButton>
 
         <Divider className={this.classes.searchDivider} />
