@@ -11,6 +11,7 @@ import { addCourseActionCreator } from '../actionCreators';
 import { fileUploadActionCreator } from '../actionCreators';
 import { Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import Upload from '@material-ui/icons/CloudUpload';
 
 // https://material-ui.com/demos/autocomplete/
 
@@ -49,7 +50,7 @@ class FileUpload extends React.Component {
           onClick={this.handleSubmit}
           component="label"
         >
-          <Enter />
+          <Upload />
           <input
             type="file"
             style={{ display: 'none' }}

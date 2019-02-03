@@ -14,6 +14,7 @@ import { withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
 import { push } from 'connected-react-router';
+import Paper from '@material-ui/core/Paper';
 ReactGA.initialize('UA-133316416-1');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
@@ -37,10 +38,17 @@ class Dashboard extends Component {
 
         <main className={this.classes.content}>
           <div className={this.classes.appBarSpacer} />
+
           <Typography variant="h4" gutterBottom component="h2">
             <div className={this.classes.root}>
               <Grid container spacing={24}>
                 <Grid item xs={12} lg={12} />
+                <Grid container justify="center">
+                  <div className={this.classes.introPaper}>
+                    To start planning your future courses start typing courses
+                    you've taken already or upload your unnoficial transcript!
+                  </div>
+                </Grid>
                 <Grid item xs={12} lg={1} />
                 <Grid item xs={12} lg={5}>
                   <Search />

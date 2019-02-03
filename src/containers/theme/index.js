@@ -7,6 +7,18 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit
   },
+  introPaper: {
+    // marginTop: theme.spacing.unit * 8,'
+    height: '100%',
+    maxWidth: '50%',
+    flexDirection: 'horizontal',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`,
+    textAlign: 'center'
+  },
   input: {
     display: 'none'
   },
