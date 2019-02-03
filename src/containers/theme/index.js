@@ -140,28 +140,7 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center'
   },
-  table: {
-    fontFamily: theme.typography.fontFamily
-  },
-  flexContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    boxSizing: 'border-box'
-  },
-  tableRow: {
-    cursor: 'pointer'
-  },
-  tableRowHover: {
-    '&:hover': {
-      backgroundColor: theme.palette.grey[200]
-    }
-  },
-  tableCell: {
-    flex: 1
-  },
-  noClick: {
-    cursor: 'initial'
-  },
+
   fab: {
     margin: theme.spacing.unit
   },
@@ -244,6 +223,31 @@ export const appbarStyles = theme => ({
   title: {
     padding: theme.spacing.unit * 3,
     flexGrow: 1
+  }
+});
+
+export const virtualizedTableStyles = theme => ({
+  table: {
+    fontFamily: theme.typography.fontFamily
+  },
+  flexContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    boxSizing: 'border-box'
+  },
+  tableRow: {
+    cursor: 'pointer'
+  },
+  tableRowHover: {
+    '&:hover': {
+      backgroundColor: theme.palette.grey[200]
+    }
+  },
+  tableCell: {
+    flex: 1
+  },
+  noClick: {
+    cursor: 'initial'
   }
 });
 
