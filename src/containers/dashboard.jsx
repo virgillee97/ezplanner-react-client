@@ -66,7 +66,7 @@ class Dashboard extends Component {
           </Typography>
           <Typography component="div" className={this.classes.chartContainer} />
           <Typography variant="h4" gutterBottom component="h2">
-            Courses
+            Possible Courses You May Take
           </Typography>
           <div className={this.classes.tableContainer}>
             <CourseTable />

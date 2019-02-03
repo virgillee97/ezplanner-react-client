@@ -8,7 +8,6 @@ const styles = theme => ({
     margin: theme.spacing.unit
   },
   introPaper: {
-    // marginTop: theme.spacing.unit * 8,'
     height: '100%',
     maxWidth: '50%',
     flexDirection: 'horizontal',
@@ -129,7 +128,8 @@ const styles = theme => ({
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    })
+    }),
+    maxHeight: '60px'
   },
   appBarShift: {
     marginLeft: drawerWidth,

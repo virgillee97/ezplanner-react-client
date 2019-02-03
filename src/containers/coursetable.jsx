@@ -53,7 +53,7 @@ class CourseTable extends Component {
     return (
       <div>
         {this.updateTable()}
-        <Paper style={{ height: 400, width: '100%' }}>
+        <Paper style={{ height: '76vh', width: '100%' }}>
           <WrappedVirtualizedTable
             rowCount={this.rows.length}
             rowGetter={({ index }) => this.rows[index]}
