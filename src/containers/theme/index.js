@@ -209,6 +209,12 @@ const styles = theme => ({
   },
   noClick: {
     cursor: 'initial'
+  },
+  fab: {
+    margin: theme.spacing.unit
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit
   }
 });
 
