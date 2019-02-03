@@ -5,16 +5,14 @@ import { withStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import AppBar from './appbar';
 import CourseTable from './coursetable';
-import Button from '@material-ui/core/Button';
-import { awsPlannerLamdaActionCreator } from '../actionCreators';
 import Search from './search';
 import CourseChips from './CourseChips';
 import { withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
+import { push } from 'connected-react-router';
 ReactGA.initialize('UA-133316416-1');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
@@ -24,10 +22,11 @@ class Dashboard extends Component {
     this.classes = props.classes;
   }
 
-  generatePlannerCourses = () => {
-    this.props.planner(this.props.courseInput);
-    this.forceUpdate();
-  };
+  componentDidMount() {
+    if (!this.props.userEmail) {
+      this.props.goHome();
+    }
+  }
 
   render() {
     return (
@@ -38,21 +37,8 @@ class Dashboard extends Component {
         <main className={this.classes.content}>
           <div className={this.classes.appBarSpacer} />
           <Typography variant="h4" gutterBottom component="h2">
-            <div>{`Welcome back ${this.props.userEmail}!`}</div>
             <div className={this.classes.root}>
               <Grid container spacing={24}>
-                <Grid item xs={12} lg={3}>
-                  <Paper className={this.classes.searchPaper}>
-                    <Button
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                      onClick={this.generatePlannerCourses}
-                    >
-                      Generate
-                    </Button>
-                  </Paper>
-                </Grid>
                 <Grid item xs={12} lg={12} />
                 <Grid item xs={12} lg={1} />
                 <Grid item xs={12} lg={4}>
@@ -84,7 +70,8 @@ Dashboard.propTypes = {
   courseInput: PropTypes.array,
   message: PropTypes.string,
   userEmail: PropTypes.string,
-  planner: PropTypes.func
+  planner: PropTypes.func,
+  goHome: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -95,9 +82,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  planner: courses => {
-    dispatch(awsPlannerLamdaActionCreator(courses));
-  }
+  goHome: () => dispatch(push('/'))
 });
 
 export default withStyles(styles)(
