@@ -14,7 +14,6 @@ import { withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
 import { push } from 'connected-react-router';
-import Paper from '@material-ui/core/Paper';
 ReactGA.initialize('UA-133316416-1');
 ReactGA.pageview(window.location.pathname + window.location.search);
 

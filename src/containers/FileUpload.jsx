@@ -4,13 +4,11 @@ import { withStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Enter from '@material-ui/icons/KeyboardArrowRight';
 import { searchStyle } from './theme';
 import { connect } from 'react-redux';
 import { addCourseActionCreator } from '../actionCreators';
 import { fileUploadActionCreator } from '../actionCreators';
 import { Paper } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 import Upload from '@material-ui/icons/CloudUpload';
 
 // https://material-ui.com/demos/autocomplete/
