@@ -59,19 +59,6 @@ const styles = theme => ({
     margin: 4
   },
 
-  chipPaper: {
-    // marginTop: theme.spacing.unit * 8,'
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'horizontal',
-    alignItems: 'left',
-    flexWrap: 'wrap',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`
-  },
-  chip: {
-    margin: '10px 5px 0px 5px'
-  },
   avatar: {
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main
@@ -240,11 +227,17 @@ export const searchStyle = () => ({
 });
 
 export const chipStyles = theme => ({
-  root: {
+  chipPaper: {
+    height: '100%',
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'horizontal',
+    alignItems: 'left',
     flexWrap: 'wrap',
-    padding: theme.spacing.unit / 2
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`
+  },
+  chip: {
+    margin: '10px 5px 0px 5px'
   }
 });
 
