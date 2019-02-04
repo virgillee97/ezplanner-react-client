@@ -12,3 +12,8 @@ Once the repo has been cloned, within a teminal inside that repo, run the follow
 ```
 npm i && npm start
 ```
+
+## MVP
+```
+https://uwezplanner.firebaseapp.com
+```

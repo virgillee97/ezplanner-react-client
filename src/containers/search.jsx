@@ -49,7 +49,7 @@ class Search extends React.Component {
           autoComplete="off"
           className={this.classes.input}
           value={this.state.course || ''}
-          placeholder="Ex. ECE224"
+          placeholder="Ex. ECON101"
           onChange={this.handleChange}
           id="course"
           onKeyPress={this.handleKeyPress}
