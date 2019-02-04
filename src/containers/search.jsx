@@ -34,7 +34,7 @@ class Search extends React.Component {
 
   handleSubmit = () => {
     if (this.state.course != null && this.state.course !== '') {
-      this.props.addCourse(this.state.course);
+      this.props.addCourse(this.state.course.toString().toUpperCase());
     }
 
     this.setState({

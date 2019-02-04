@@ -6,10 +6,6 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import { searchStyle } from './theme';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
-import { addCourseActionCreator } from '../actionCreators';
-=======
->>>>>>> a075f8a6d530f82287036f4ee11f0ad51687c2f6
 import { fileUploadActionCreator } from '../actionCreators';
 import { Paper } from '@material-ui/core';
 import Upload from '@material-ui/icons/CloudUpload';
