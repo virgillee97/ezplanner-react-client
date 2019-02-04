@@ -54,6 +54,7 @@ class FileUpload extends React.Component {
             style={{ display: 'none' }}
             onChange={event => this.handleUpload(event)}
             name="selectedFile"
+            accept="application/pdf"
           />
         </IconButton>
 
