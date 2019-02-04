@@ -9,7 +9,8 @@ export const initialState = {
   userInfo: null,
   message: null,
   plannerCourses: null,
-  coursesInput: []
+  coursesInput: [],
+  isUploading: false
 };
 const messageReducer = (_, action) => {
   switch (action.type) {
@@ -93,6 +94,18 @@ const coursesInputReducer = (state = null, action) => {
     return [...(state || []), action.payload];
   case actions.REMOVE_COURSE:
     return (state || []).filter(course => course !== action.payload);
+  case actions.FILE_UPLOAD_SUCCEEDED:
+    return [...new Set(...(state || []), action.payload)];
+  case actions.FILE_UPLOAD_FAILED:
+  default:
+    return state;
+  }
+};
+
+const fileUploadReducer = (state = null, action) => {
+  switch (action.type) {
+  case actions.FILE_UPLOADING:
+    return true;
   default:
     return state;
   }
@@ -107,5 +120,6 @@ export default history =>
     isRegistering: isRegisteringReducer,
     message: messageReducer,
     plannerCourses: plannerCoursesReducer,
-    coursesInput: coursesInputReducer
+    coursesInput: coursesInputReducer,
+    isUploading: fileUploadReducer
   });

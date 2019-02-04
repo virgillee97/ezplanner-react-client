@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import AppBar from './appbar';
 import CourseTable from './coursetable';
 import Search from './search';
+import FileUpload from './FileUpload';
 import CourseChips from './CourseChips';
 import { withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
@@ -41,12 +42,14 @@ class Dashboard extends Component {
               <Grid container spacing={24}>
                 <Grid item xs={12} lg={12} />
                 <Grid item xs={12} lg={1} />
-                <Grid item xs={12} lg={4}>
+                <Grid item xs={12} lg={5}>
                   <Search />
                 </Grid>
-
-                <Grid item xs={12} lg={6}>
-                  <Grid item xs={12} lg={1} />
+                <Grid item xs={12} lg={5}>
+                  <FileUpload />
+                </Grid>
+                <Grid item xs={12} lg={1} />
+                <Grid item xs={12} lg={12}>
                   {(this.props.courseInput || []).length ? (
                     <CourseChips />
                   ) : null}
