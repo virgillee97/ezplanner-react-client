@@ -58,10 +58,7 @@ class FileUpload extends React.Component {
             style={{ display: 'none' }}
             onChange={event => this.handleUpload(event)}
             name="selectedFile"
-<<<<<<< HEAD
-=======
             accept="application/pdf"
->>>>>>> a075f8a6d530f82287036f4ee11f0ad51687c2f6
           />
         </IconButton>
 
@@ -74,24 +71,12 @@ class FileUpload extends React.Component {
 
 FileUpload.propTypes = {
   classes: PropTypes.object.isRequired,
-<<<<<<< HEAD
-  planner: PropTypes.func,
-  courses: PropTypes.array,
-  addCourse: PropTypes.func.isRequired,
-=======
->>>>>>> a075f8a6d530f82287036f4ee11f0ad51687c2f6
   uploadFile: PropTypes.func.isRequired,
   uuid: PropTypes.string.isRequired,
   uploading: PropTypes.bool.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
-<<<<<<< HEAD
-  addCourse: course => {
-    dispatch(addCourseActionCreator(course));
-  },
-=======
->>>>>>> a075f8a6d530f82287036f4ee11f0ad51687c2f6
   uploadFile: (file, uuid) => {
     dispatch(fileUploadActionCreator(file, uuid));
   }
