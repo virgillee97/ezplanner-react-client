@@ -108,7 +108,7 @@ class Login extends Component {
               ]}
             />
           </Snackbar>
-          ) : (<div></div>)}
+          ) : null}
       </div>
     );
   }
