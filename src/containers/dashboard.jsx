@@ -14,6 +14,7 @@ import { withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
 import { push } from 'connected-react-router';
+import Paper from '@material-ui/core/Paper';
 ReactGA.initialize('UA-133316416-1');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
@@ -28,52 +29,68 @@ class Dashboard extends Component {
       this.props.goHome();
     }
   }
+  handleClick = () => {
+    console.log('hi');
+  };
 
   render() {
     return (
       <div className={this.classes.root}>
-        <CssBaseline />
-        <AppBar />
+        {!this.props.emailVerified || false ? (
+          <Paper className={this.classes.email}>
+            Please Verify your email. <br />
+            <a onClick={this.handleClick}> Resend email </a>
+          </Paper>
+        ) : (
+          <div>
+            <CssBaseline />
+            <AppBar />
 
-        <main className={this.classes.content}>
-          <div className={this.classes.appBarSpacer} />
+            <main className={this.classes.content}>
+              <div className={this.classes.appBarSpacer} />
 
-          <Typography variant="h4" gutterBottom component="h2">
-            <div className={this.classes.root}>
-              <Grid container spacing={24}>
-                <Grid item xs={12} lg={12} />
-                <Grid container justify="center">
-                  <div className={this.classes.introPaper}>
-                    <p>
-                      To start planning your future courses start typing courses
-                      you've taken already or upload your unofficial transcript!
-                    </p>
-                  </div>
-                </Grid>
-                <Grid item xs={12} lg={1} />
-                <Grid item xs={12} lg={5}>
-                  <Search />
-                </Grid>
-                <Grid item xs={12} lg={5}>
-                  <FileUpload />
-                </Grid>
-                <Grid item xs={12} lg={1} />
-                <Grid item xs={12} lg={12}>
-                  {(this.props.courseInput || []).length ? (
-                    <CourseChips />
-                  ) : null}
-                </Grid>
-              </Grid>
-            </div>
-          </Typography>
-          <Typography component="div" className={this.classes.chartContainer} />
-          <Typography variant="h4" gutterBottom component="h2">
-            Possible Courses You May Take
-          </Typography>
-          <div className={this.classes.tableContainer}>
-            <CourseTable />
+              <Typography variant="h4" gutterBottom component="h2">
+                <div className={this.classes.root}>
+                  <Grid container spacing={24}>
+                    <Grid item xs={12} lg={12} />
+                    <Grid container justify="center">
+                      <div className={this.classes.introPaper}>
+                        <p>
+                          To start planning your future courses start typing
+                          courses you've taken already or upload your unofficial
+                          transcript!
+                        </p>
+                      </div>
+                    </Grid>
+                    <Grid item xs={12} lg={1} />
+                    <Grid item xs={12} lg={5}>
+                      <Search />
+                    </Grid>
+                    <Grid item xs={12} lg={5}>
+                      <FileUpload />
+                    </Grid>
+                    <Grid item xs={12} lg={1} />
+                    <Grid item xs={12} lg={12}>
+                      {(this.props.courseInput || []).length ? (
+                        <CourseChips />
+                      ) : null}
+                    </Grid>
+                  </Grid>
+                </div>
+              </Typography>
+              <Typography
+                component="div"
+                className={this.classes.chartContainer}
+              />
+              <Typography variant="h4" gutterBottom component="h2">
+                Possible Courses You May Take
+              </Typography>
+              <div className={this.classes.tableContainer}>
+                <CourseTable />
+              </div>
+            </main>
           </div>
-        </main>
+        )}
       </div>
     );
   }
@@ -85,12 +102,14 @@ Dashboard.propTypes = {
   message: PropTypes.string,
   userEmail: PropTypes.string,
   planner: PropTypes.func,
-  goHome: PropTypes.func.isRequired
+  goHome: PropTypes.func.isRequired,
+  emailVerified: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
   state,
   userEmail: (state.userInfo && state.userInfo.email) || null,
+  emailVerified: (state.userInfo && state.userInfo.emailVerified) || null,
   message: state.message || null,
   courseInput: state.coursesInput || null
 });

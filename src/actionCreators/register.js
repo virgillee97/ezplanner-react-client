@@ -7,6 +7,17 @@ export const registerActionCreator = (email, password) => async dispatch => {
   });
   try {
     await firebase.auth().createUserWithEmailAndPassword(email, password);
+    var user = firebase.auth().currentUser;
+
+    user
+      .sendEmailVerification()
+      .then(function() {})
+      .catch(function(error) {
+        dispatch({
+          type: actions.REGISTER_FAILED,
+          payload: error.message
+        });
+      });
 
     dispatch({
       type: actions.REGISTER_SUCCEEDED
