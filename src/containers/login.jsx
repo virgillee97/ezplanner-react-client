@@ -70,42 +70,46 @@ class Login extends Component {
 
   renderSnackBar() {
     return (
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center'
-        }}
-        open={this.state.open}
-        autoHideDuration={3000}
-        onClose={this.handleClose}
-      >
-        <SnackbarContent
-          className={classNames(this.classes.error, this.className)}
-          aria-describedby="client-snackbar"
-          message={
-            <span id="client-snackbar" className={this.classes.message}>
-              <ErrorIcon
-                className={classNames(
-                  this.classes.error,
-                  this.classes.iconVariant
-                )}
-              />
-              {this.props.message}
-            </span>
-          }
-          action={[
-            <IconButton
-              key="close"
-              aria-label="Close"
-              color="inherit"
-              className={this.classes.close}
-              onClick={this.handleClose}
-            >
-              <CloseIcon className={this.classes.icon} />
-            </IconButton>
-          ]}
-        />
-      </Snackbar>
+      <div>
+        {this.props.message ? (
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+            open={this.state.open}
+            autoHideDuration={3000}
+            onClose={this.handleClose}
+          >
+            <SnackbarContent
+              className={classNames(this.classes.error, this.className)}
+              aria-describedby="client-snackbar"
+              message={
+                <span id="client-snackbar" className={this.classes.message}>
+                  <ErrorIcon
+                    className={classNames(
+                      this.classes.error,
+                      this.classes.iconVariant
+                    )}
+                  />
+                  {this.props.message}
+                </span>
+              }
+              action={[
+                <IconButton
+                  key="close"
+                  aria-label="Close"
+                  color="inherit"
+                  className={this.classes.close}
+                  onClick={this.handleClose}
+                >
+                  <CloseIcon className={this.classes.icon} />
+                </IconButton>
+              ]}
+            />
+          </Snackbar>
+          ) : null}
+      </div>
     );
   }
 

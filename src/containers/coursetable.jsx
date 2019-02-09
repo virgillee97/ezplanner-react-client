@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import MuiVirtualizedTable from './MuiVirtualizedTable';
+import InputBase from '@material-ui/core/InputBase';
+import { tableStyle } from './theme';
+import { withStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
 
 MuiVirtualizedTable.propTypes = {
   classes: PropTypes.object,
@@ -26,10 +30,22 @@ MuiVirtualizedTable.defaultProps = {
   rowHeight: 56
 };
 
+function searchingFor(keyword){
+  return function(x){
+    return x.courseCode.toLowerCase().includes(keyword.toLowerCase()) || !keyword;
+  }
+}
+
 class CourseTable extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      keyword: ''
+    };
+    this.classes = props.classes;
     this.rows = [];
+    this.filterHandler = this.filterHandler.bind(this);
   }
 
   updateTable() {
@@ -43,14 +59,31 @@ class CourseTable extends Component {
           courseTittle: this.props.data[i][1],
           link: this.props.data[i][2]
         });
+        if(this.state.keyword != ''){
+          this.rows = this.rows.filter(searchingFor(this.state.keyword))
+        }
       }
     }
   }
+  
+  filterHandler(event){
+    this.setState({keyword: event.target.value})
+  } 
+
   render() {
     return (
       <div>
-        {this.updateTable()}
+        <Paper className={this.classes.root} elevation={1}>
+          <InputBase
+            className={this.classes.filterInput}
+            value={this.state.keyword}
+            placeholder="Filter Result"
+            onChange={this.filterHandler}
+          />
+        </Paper>
+        <Divider className={this.classes.filterDivider} /> 
         <Paper style={{ height: '76vh', width: '100%' }}>
+          {this.updateTable()}
           <MuiVirtualizedTable
             rowCount={this.rows.length}
             rowGetter={({ index }) => this.rows[index]}
@@ -78,7 +111,7 @@ class CourseTable extends Component {
         </Paper>
         {/* <IconButton>
           <Download/>
-      </IconButton> */}
+        </IconButton> */}
       </div>
     );
   }
@@ -92,7 +125,10 @@ const mapStateToProps = state => ({
   data: state.plannerCourses || null
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(CourseTable);
+export default withStyles(tableStyle)(
+  connect(
+    mapStateToProps,
+    null
+  )(CourseTable)
+);
+
