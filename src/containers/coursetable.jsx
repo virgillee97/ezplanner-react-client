@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import MuiVirtualizedTable from './MuiVirtualizedTable';
+import InputBase from '@material-ui/core/InputBase';
+import { tableStyle } from './theme';
+import { withStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
 
 MuiVirtualizedTable.propTypes = {
   classes: PropTypes.object,
@@ -49,7 +56,26 @@ class CourseTable extends Component {
   render() {
     return (
       <div>
-        {this.updateTable()}
+        <Grid container spacing={24}>
+                <Grid item xs={12} lg={7} >
+                <Typography variant="h4" gutterBottom component="h2">
+            Possible Courses You May Take: 
+          </Typography>
+                </Grid>
+                <Grid item xs={12} lg={5}>
+                <Paper className={this.classes.root} elevation={1}>
+          <InputBase
+            className={this.classes.filterInput}
+            value={this.state.keyword}
+            placeholder="Filter Result"
+            onChange={this.filterHandler}
+          />
+        </Paper>
+                </Grid>
+        </Grid>
+        
+        
+        <Divider className={this.classes.filterDivider} /> 
         <Paper style={{ height: '76vh', width: '100%' }}>
           <MuiVirtualizedTable
             rowCount={this.rows.length}
