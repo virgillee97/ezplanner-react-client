@@ -64,9 +64,27 @@ export const searchStyle = () => ({
   iconButton: {
     padding: 10
   },
-  divider: {
+  searchDivider: {
     width: 1,
     height: 28,
+    margin: 4
+  }
+});
+
+export const tableStyle = () => ({
+  root: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%'
+  },
+  filterInput: {
+    marginLeft: 8,
+    flex: 1
+  },
+  filterDivider: {
+    width: 1,
+    height: 1,
     margin: 4
   }
 });
