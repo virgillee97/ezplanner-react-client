@@ -143,4 +143,3 @@ export default withStyles(tableStyle)(
     null
   )(CourseTable)
 );
-
