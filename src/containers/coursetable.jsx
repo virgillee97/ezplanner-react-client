@@ -76,21 +76,22 @@ class CourseTable extends Component {
     return (
       <div>
         <Grid container spacing={24}>
-                <Grid item xs={12} lg={6} >
-                  <Typography variant="h4" gutterBottom component="h2">
-                    Possible Courses You May Take: 
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} lg={6} >
-                <Paper className={this.classes.root} elevation={1}>
-                  <InputBase
-                    className={this.classes.filterInput}
-                    value={this.state.keyword}
-                    placeholder="Filter Result"
-                    onChange={this.filterHandler}
-                  />
-                </Paper>
-                </Grid>
+          <Grid item xs={12} lg={6} >
+            <Typography variant="h4" gutterBottom component="h2">
+              Possible Courses You May Take: 
+            </Typography>
+          </Grid>
+          <Grid item xs={12} lg={6} >
+            <Paper className={this.classes.root} elevation={1}>
+              <InputBase
+                className={this.classes.filterInput}
+                value={this.state.keyword}
+                placeholder="Filter Result"
+                onChange={this.filterHandler}
+              />
+              <Divider className={this.classes.searchDivider} />
+            </Paper>
+          </Grid>    
         </Grid>
         
         <Divider className={this.classes.filterDivider} /> 
