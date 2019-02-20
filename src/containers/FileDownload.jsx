@@ -18,25 +18,28 @@ class FileDownload extends React.Component {
     var inputCourses = this.props.input;
     var plannerCourses = this.props.courseData;
     var tempCourse;
+    var countNum = 1;
 
     if(plannerCourses){
       csvData.push(['The courses you have taken:']);
 
-      for(var j = 0; j < inputCourses.length; j++){
-        tempCourse = inputCourses[j].split(/(\d+)/);
-        inputCourses[j] = tempCourse[0] + ' ' + tempCourse[1] + tempCourse[2];
-        csvData.push([(j+1), inputCourses[j]]);
-      }
+     inputCourses.map(inputCourses =>{
+        tempCourse = inputCourses.split(/(\d+)/);
+        csvData.push([countNum++, tempCourse[0] + ' ' + tempCourse[1] + tempCourse[2]]);
+      });
 
       csvData.push(['The courses you can take:']);
 
-      for(var item = 0; item < plannerCourses.length; item++){
-        csvData.push([(item+1), plannerCourses[item][0], plannerCourses[item][1].replace(/,/g,''), plannerCourses[item][2]]);
-      }
+      countNum = 1;
 
-      for(var i = 0; i < csvData.length; ++i){
-        csvRow.push(csvData[i].join(","));
-      }
+      plannerCourses.map(plannerCourses =>{
+        csvData.push([countNum++, plannerCourses[0], plannerCourses[1].replace(/,/g, ''), plannerCourses[2]]);  
+      });
+
+      csvData.map(csvData =>{
+        csvRow.push(csvData.join(","));
+      });
+
       var csvString = csvRow.join("\n");
 
       var download = document.createElement("a");
@@ -47,6 +50,7 @@ class FileDownload extends React.Component {
       download.click();
     }else{
       //TODO:display error message;
+      console.warn("No course input!!!");
     }
   } 
 
