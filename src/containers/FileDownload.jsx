@@ -76,7 +76,7 @@ FileDownload.propTypes = {
 
 const mapStateToProps = state => ({
   courseData: state.plannerCourses,
-  input: state.coursesInput || null
+  input: state.coursesInput
 });
 
 export default withStyles(searchStyle)(
