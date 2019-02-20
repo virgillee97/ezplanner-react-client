@@ -10,9 +10,10 @@ class FileDownload extends React.Component {
   constructor(props) {
     super(props);
     this.classes = props.classes;
+    this.csvString = null;
   }
 
-  exportCsv(){
+  exportCsv = () => {
     var csvRow = [];
     var csvData = [['','#','Course Code', 'Course Tittle', 'Link']];
     var inputCourses = this.props.input;
@@ -36,23 +37,16 @@ class FileDownload extends React.Component {
         csvData.push([countNum++, plannerCourses[0], plannerCourses[1].replace(/,/g, ''), plannerCourses[2]]);  
       });
 
-      csvData.map(csvData =>{
+      csvData.forEach(csvData =>{
         csvRow.push(csvData.join(","));
       });
 
-      var csvString = csvRow.join("\n");
-
-      var download = document.createElement("a");
-      download.href = 'data:text/csv;charset=utf-8' + csvString;
-      download.target = "_Blank";
-      download.download = "EZPlanner.csv";
-      document.body.appendChild(download);
-      download.click();
+      this.csvString = csvRow.join("\n");
     }else{
       //TODO:display error message;
       console.warn("No course input!!!");
     }
-  } 
+  }
 
   render() {
     return (
@@ -60,10 +54,16 @@ class FileDownload extends React.Component {
           color="primary"
           className={this.classes.iconButton}
           aria-label="Enter"
-          onClick={()=>{this.exportCsv()}}
+          onClick={this.exportCsv()}
           component="label"
         >
-          <Download />
+          <a
+            href = {this.csvString ? ('data:text/csv;charset=utf-8' + this.csvString) : null}
+            target = "_Blank"
+            download = "EZPlanner.csv"
+          >
+            <Download />
+          </a>
         </IconButton>
     );
   }
@@ -75,8 +75,8 @@ FileDownload.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  courseData: state.plannerCourses || null,
-  input: state.coursesInput || null
+  courseData: state.plannerCourses,
+  input: state.coursesInput
 });
 
 export default withStyles(searchStyle)(
