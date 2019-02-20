@@ -60,7 +60,7 @@ class FileDownload extends React.Component {
           color="primary"
           className={this.classes.iconButton}
           aria-label="Enter"
-          onClick={()=>{this.exportCsv()}}
+          onClick={this.exportCsv}
           component="label"
         >
           <Download />
