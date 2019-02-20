@@ -12,7 +12,7 @@ class FileDownload extends React.Component {
     this.classes = props.classes;
   }
 
-  exportCsv(){
+  exportCsv = () => {
     var csvRow = [];
     var csvData = [['','#','Course Code', 'Course Tittle', 'Link']];
     var inputCourses = this.props.input;
