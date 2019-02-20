@@ -75,7 +75,7 @@ FileDownload.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  courseData: state.plannerCourses || null,
+  courseData: state.plannerCourses,
   input: state.coursesInput || null
 });
 
