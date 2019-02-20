@@ -32,10 +32,12 @@ MuiVirtualizedTable.defaultProps = {
   rowHeight: 56
 };
 
-function searchingFor(keyword){
-  return function(x){
-    return x.courseCode.toLowerCase().includes(keyword.toLowerCase()) || !keyword;
-  }
+function searchingFor(keyword) {
+  return function(x) {
+    return (
+      x.courseCode.toLowerCase().includes(keyword.toLowerCase()) || !keyword
+    );
+  };
 }
 
 class CourseTable extends Component {
@@ -61,27 +63,27 @@ class CourseTable extends Component {
           courseTittle: this.props.data[i][1],
           link: this.props.data[i][2]
         });
-        if(this.state.keyword !== ''){
-          this.rows = this.rows.filter(searchingFor(this.state.keyword))
+        if (this.state.keyword !== '') {
+          this.rows = this.rows.filter(searchingFor(this.state.keyword));
         }
       }
     }
   }
-  
-  filterHandler(event){
-    this.setState({keyword: event.target.value})
-  } 
+
+  filterHandler(event) {
+    this.setState({ keyword: event.target.value });
+  }
 
   render() {
     return (
       <div>
         <Grid container spacing={24}>
-          <Grid item xs={12} lg={6} >
+          <Grid item xs={12} lg={6}>
             <Typography variant="h4" gutterBottom component="h2">
-              Possible Courses You May Take: 
+              Possible Courses You May Take:
             </Typography>
           </Grid>
-          <Grid item xs={12} lg={6} >
+          <Grid item xs={12} lg={6}>
             <Paper className={this.classes.root} elevation={1}>
               <InputBase
                 className={this.classes.filterInput}
@@ -91,10 +93,10 @@ class CourseTable extends Component {
               />
               <Divider className={this.classes.searchDivider} />
             </Paper>
-          </Grid>    
+          </Grid>
         </Grid>
-        
-        <Divider className={this.classes.filterDivider} /> 
+
+        <Divider className={this.classes.filterDivider} />
         <Paper style={{ height: '76vh', width: '100%' }}>
           {this.updateTable()}
           <MuiVirtualizedTable
@@ -131,7 +133,8 @@ class CourseTable extends Component {
 }
 
 CourseTable.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  classes: PropTypes.object
 };
 
 const mapStateToProps = state => ({
