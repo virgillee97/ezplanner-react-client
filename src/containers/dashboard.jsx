@@ -58,10 +58,6 @@ class Dashboard extends Component {
                 <Grid item xs={12} lg={5}>
                   <FileUpload />
                 </Grid>
-                {/* TODO: Change UI for file download button */}
-                <Grid item xs={12} lg={5}>
-                  <FileDownload />
-                </Grid>
                 <Grid item xs={12} lg={1} />
                 <Grid item xs={12} lg={12}>
                   {(this.props.courseInput || []).length ? (

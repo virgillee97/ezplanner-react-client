@@ -13,7 +13,7 @@ class FileDownload extends React.Component {
     this.csvString = null;
   }
 
-  exportCsv = () => {
+  generateCsv() {
     var csvRow = [];
     var csvData = [['','#','Course Code', 'Course Tittle', 'Link']];
     var inputCourses = this.props.input;
@@ -43,28 +43,25 @@ class FileDownload extends React.Component {
 
       this.csvString = csvRow.join("\n");
     }else{
-      //TODO:display error message;
-      console.warn("No course input!!!");
+      //TODO: display error message
+      console.warn("No Input!!!")
+      this.csvString = null;
     }
   }
 
   render() {
     return (
-        <IconButton
-          color="primary"
-          className={this.classes.iconButton}
-          aria-label="Enter"
-          onClick={this.exportCsv()}
-          component="label"
+      <div>
+        {this.generateCsv()}
+        <a
+          href={this.csvString ? ('data:text/csv;charset=utf-8' + this.csvString) : null}
+          target="_Blank"
+          download="EZPlanner.csv"
+          on={this.generateCsv()}
         >
-          <a
-            href = {this.csvString ? ('data:text/csv;charset=utf-8' + this.csvString) : null}
-            target = "_Blank"
-            download = "EZPlanner.csv"
-          >
-            <Download />
-          </a>
-        </IconButton>
+          <Download />
+        </a>
+      </div>
     );
   }
 }

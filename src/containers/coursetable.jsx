@@ -10,6 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import FileDownload from './FileDownload';
 
 MuiVirtualizedTable.propTypes = {
   classes: PropTypes.object,
@@ -79,10 +80,12 @@ class CourseTable extends Component {
           <Grid item xs={12} lg={6} >
             <Typography variant="h4" gutterBottom component="h2">
               Possible Courses You May Take: 
-            </Typography>
+            </Typography>            
           </Grid>
           <Grid item xs={12} lg={6} >
             <Paper className={this.classes.root} elevation={1}>
+              {/* TODO: Change UI for file download button */}
+              <FileDownload />
               <InputBase
                 className={this.classes.filterInput}
                 value={this.state.keyword}
