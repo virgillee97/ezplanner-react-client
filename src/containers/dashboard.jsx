@@ -9,7 +9,6 @@ import AppBar from './appbar';
 import CourseTable from './coursetable';
 import Search from './search';
 import FileUpload from './FileUpload';
-import FileDownload from './FileDownload';
 import CourseChips from './CourseChips';
 import { withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
