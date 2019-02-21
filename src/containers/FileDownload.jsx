@@ -24,7 +24,7 @@ class FileDownload extends React.Component {
     if(plannerCourses){
       csvData.push(['The courses you have taken:']);
 
-     inputCourses.map(inputCourses =>{
+     inputCourses.forEach(inputCourses =>{
         tempCourse = inputCourses.split(/(\d+)/);
         csvData.push([countNum++, tempCourse[0] + ' ' + tempCourse[1] + tempCourse[2]]);
       });
@@ -33,7 +33,7 @@ class FileDownload extends React.Component {
 
       countNum = 1;
 
-      plannerCourses.map(plannerCourses =>{
+      plannerCourses.forEach(plannerCourses =>{
         csvData.push([countNum++, plannerCourses[0], plannerCourses[1].replace(/,/g, ''), plannerCourses[2]]);  
       });
 
