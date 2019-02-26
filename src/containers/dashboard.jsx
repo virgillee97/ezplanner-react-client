@@ -45,8 +45,9 @@ class Dashboard extends Component {
                 <Grid container justify="center">
                   <div className={this.classes.introPaper}>
                     <p>
-                      To start planning your future courses start typing courses
-                      you've taken already or upload your unofficial transcript!
+                      {
+                        'To start planning your future courses start typing courses you\'ve taken already or upload your unofficial transcript!'
+                      }
                     </p>
                   </div>
                 </Grid>
@@ -67,9 +68,6 @@ class Dashboard extends Component {
             </div>
           </Typography>
           <Typography component="div" className={this.classes.chartContainer} />
-          <Typography variant="h4" gutterBottom component="h2">
-            Possible Courses You May Take: 
-          </Typography>
           <div className={this.classes.tableContainer}>
             <CourseTable />
           </div>

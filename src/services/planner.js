@@ -4,7 +4,7 @@ import { prettifyCourseName } from '../utils/courseName';
 
 const api = axios.create({
   baseURL: 'https://ezplanner-flask-api.herokuapp.com/api',
-  timeout: 5000,
+  timeout: 10000,
   headers: { 'Content-Type': 'application/json' }
 });
 
